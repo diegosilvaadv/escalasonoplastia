@@ -58,6 +58,26 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            context.pushNamed(
+              'homePage',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                ),
+              },
+            );
+          },
+          backgroundColor: Color(0xFF00C7C5),
+          elevation: 8.0,
+          child: Icon(
+            Icons.home,
+            color: FlutterFlowTheme.of(context).info,
+            size: 24.0,
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           iconTheme:

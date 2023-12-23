@@ -200,7 +200,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                   try {
                                     showUploadMessage(
                                       context,
-                                      'Uploading file...',
+                                      'Carregando Arquivo...',
                                       showLoading: true,
                                     );
                                     selectedUploadedFiles = selectedMedia
@@ -238,11 +238,12 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                       _model.uploadedFileUrl =
                                           downloadUrls.first;
                                     });
-                                    showUploadMessage(context, 'Success!');
+                                    showUploadMessage(
+                                        context, 'Carregado com Sucesso!');
                                   } else {
                                     setState(() {});
                                     showUploadMessage(
-                                        context, 'Failed to upload data');
+                                        context, 'Erro ao carregar o arquivo!');
                                     return;
                                   }
                                 }
