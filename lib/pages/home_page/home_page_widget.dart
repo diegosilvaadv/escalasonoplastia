@@ -1650,7 +1650,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      'Próximas Escala',
+                                      'Próximas Escalas',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

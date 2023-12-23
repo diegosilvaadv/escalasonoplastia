@@ -184,7 +184,7 @@ class _UserListSmallWidgetState extends State<UserListSmallWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: Text(
-                        'ADM',
+                        'EU',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium,
                       ),

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/chat_groupwbubbles/delete_dialog/delete_dialog_widget.dart';
 import '/chat_groupwbubbles/user_list_small/user_list_small_widget.dart';
@@ -210,89 +211,99 @@ class _ChatDetailsOverlayWidgetState extends State<ChatDetailsOverlayWidget> {
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(0.0, -1.0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                    if (valueOrDefault<bool>(currentUserDocument?.adm, false) ==
+                        true)
+                      Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => ClipRRect(
                               borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
-                              ),
-                            ),
-                            child: wrapWithModel(
-                              model: _model.deleteDialogModel,
-                              updateCallback: () => setState(() {}),
-                              updateOnChange: true,
-                              child: DeleteDialogWidget(
-                                chatList: widget.chatRef,
-                                action: () async {
-                                  Navigator.pop(context);
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                                ),
+                                child: wrapWithModel(
+                                  model: _model.deleteDialogModel,
+                                  updateCallback: () => setState(() {}),
+                                  updateOnChange: true,
+                                  child: DeleteDialogWidget(
+                                    chatList: widget.chatRef,
+                                    action: () async {
+                                      Navigator.pop(context);
 
-                                  context.pushNamed(
-                                    'chat_2_InviteUsers',
-                                    queryParameters: {
-                                      'chatRef': serializeParam(
-                                        widget.chatRef,
-                                        ParamType.Document,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      'chatRef': widget.chatRef,
-                                      kTransitionInfoKey: TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType:
-                                            PageTransitionType.bottomToTop,
-                                        duration: Duration(milliseconds: 250),
-                                      ),
+                                      context.pushNamed(
+                                        'chat_2_InviteUsers',
+                                        queryParameters: {
+                                          'chatRef': serializeParam(
+                                            widget.chatRef,
+                                            ParamType.Document,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'chatRef': widget.chatRef,
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 250),
+                                          ),
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                                deleteAction: () async {
-                                  await widget.chatRef!.reference.delete();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'You have successfully deleted a chat!',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                    deleteAction: () async {
+                                      await widget.chatRef!.reference.delete();
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'You have successfully deleted a chat!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .info,
-                                            ),
-                                      ),
-                                      duration: Duration(milliseconds: 3000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
-                                    ),
-                                  );
+                                                ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 3000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
 
-                                  context.pushNamed(
-                                    'chat_2_main',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType:
-                                            PageTransitionType.leftToRight,
-                                        duration: Duration(milliseconds: 220),
-                                      ),
+                                      context.pushNamed(
+                                        'chat_2_main',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.leftToRight,
+                                            duration:
+                                                Duration(milliseconds: 220),
+                                          ),
+                                        },
+                                      );
                                     },
-                                  );
-                                },
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 44.0),

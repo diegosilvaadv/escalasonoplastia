@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Escala Igreja</string>
+	<string>Escala Sonoplastia</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>EscalaIgrejas</string>
+	<string>EscalaSonoplastia</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>escalaigrejas.com</string>
+        <string>escalasonoplastia.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>escalaigrejas</string>
+        <string>escalasonoplastia</string>
         </array>
         </dict>
     </array>

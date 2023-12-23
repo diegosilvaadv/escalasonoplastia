@@ -1079,7 +1079,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                           title:
                                               Text('Data Trocado com Sucesso!'),
                                           content: Text(
-                                              '${FFAppState().sonoplastaNome} Recebera uma Notificação sobre essa troca de data!'),
+                                              '${FFAppState().sonoplastaNome} Recebera uma Notificação sobre essa troca de data! ATENÇÃO, o aviso da notificação não troca, então quem receberá o aviso é o sonoplasta antigo.'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(

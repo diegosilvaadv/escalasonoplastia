@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:label="Escala Igreja"
+        android:label="Escala Sonoplastia"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
@@ -49,7 +49,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="escalaigrejas" android:host="escalaigrejas.com" />
+                <data android:scheme="escalasonoplastia" android:host="escalasonoplastia.com" />
             </intent-filter>
 
         </activity>

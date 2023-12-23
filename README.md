@@ -1,4 +1,4 @@
-# EscalaIgrejas
+# EscalaSonoplastia
 
 A new Flutter project.
 

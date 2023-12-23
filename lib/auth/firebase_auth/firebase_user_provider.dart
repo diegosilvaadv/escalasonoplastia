@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class EscalaIgrejasFirebaseUser extends BaseAuthUser {
-  EscalaIgrejasFirebaseUser(this.user);
+class EscalaSonoplastiaFirebaseUser extends BaseAuthUser {
+  EscalaSonoplastiaFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -54,17 +54,18 @@ class EscalaIgrejasFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      EscalaIgrejasFirebaseUser(user);
+      EscalaSonoplastiaFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> escalaIgrejasFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> escalaSonoplastiaFirebaseUserStream() =>
+    FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = EscalaIgrejasFirebaseUser(user);
+        currentUser = EscalaSonoplastiaFirebaseUser(user);
         return currentUser!;
       },
     );
