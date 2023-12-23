@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/chat_groupwbubbles/chat_thread_update/chat_thread_update_widget.dart';
 import '/chat_groupwbubbles/empty_state_simple/empty_state_simple_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -60,6 +61,8 @@ class ChatThreadComponentModel
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in TextField widget.
   ChatMessagesRecord? newChatMessage;
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
+  List<UsersRecord>? userResultado;
   // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
   ChatMessagesRecord? newChat;
 

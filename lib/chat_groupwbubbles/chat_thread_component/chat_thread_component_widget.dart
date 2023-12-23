@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/chat_groupwbubbles/chat_thread_update/chat_thread_update_widget.dart';
 import '/chat_groupwbubbles/empty_state_simple/empty_state_simple_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -451,7 +452,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium,
-                                      hintText: 'Start typing here...',
+                                      hintText: 'Enviar Mensagem...',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelSmall,
                                       errorStyle: FlutterFlowTheme.of(context)
@@ -542,6 +543,8 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                                 .validate()) {
                                           return;
                                         }
+                                        _model.userResultado =
+                                            await queryUsersRecordOnce();
                                         // newChatMessage
 
                                         var chatMessagesRecordReference =
@@ -568,6 +571,22 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                                   image: _model.uploadedFileUrl,
                                                 ),
                                                 chatMessagesRecordReference);
+                                        triggerPushNotification(
+                                          notificationTitle:
+                                              '${currentUserDisplayName} enviou uma mensagem no grupo!',
+                                          notificationText:
+                                              _model.textController.text,
+                                          notificationImageUrl:
+                                              currentUserPhoto,
+                                          notificationSound: 'default',
+                                          userRefs: _model.userResultado!
+                                              .map((e) => e.reference)
+                                              .toList(),
+                                          initialPageName: 'chat_2_Details',
+                                          parameterData: {
+                                            'chatRef': widget.chatRef,
+                                          },
+                                        );
                                         // clearUsers
                                         _model.lastSeenBy = [];
                                         // In order to add a single user reference to a list of user references we are adding our current user reference to a page state.
