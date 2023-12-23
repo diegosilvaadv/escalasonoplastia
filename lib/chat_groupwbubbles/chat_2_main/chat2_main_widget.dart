@@ -63,35 +63,41 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'My Chats',
+            'Chat ',
             style: FlutterFlowTheme.of(context).headlineLarge,
           ),
           actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 8.0),
-              child: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).primary,
-                borderRadius: 12.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).accent1,
-                icon: Icon(
-                  Icons.add_comment,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 24.0,
-                ),
-                onPressed: () async {
-                  context.pushNamed(
-                    'chat_2_InviteUsers',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.bottomToTop,
-                        duration: Duration(milliseconds: 270),
-                      ),
+            Visibility(
+              visible:
+                  valueOrDefault<bool>(currentUserDocument?.adm, false) == true,
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 8.0),
+                child: AuthUserStreamWidget(
+                  builder: (context) => FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).primary,
+                    borderRadius: 12.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    fillColor: FlutterFlowTheme.of(context).accent1,
+                    icon: Icon(
+                      Icons.add_comment,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      context.pushNamed(
+                        'chat_2_InviteUsers',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 270),
+                          ),
+                        },
+                      );
                     },
-                  );
-                },
+                  ),
+                ),
               ),
             ),
           ],
@@ -107,7 +113,7 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                 child: Text(
-                  'Below are your chats and group chats',
+                  'chat dos sonoplastas',
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
               ),
@@ -774,7 +780,7 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
                                                                             12.0,
                                                                             0.0),
                                                                 child: Text(
-                                                                  'Group Chat',
+                                                                  'Grupo da sonoplastia',
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,
@@ -834,7 +840,7 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
                                                                 String>(
                                                               listViewChatsRecord
                                                                   .lastMessage,
-                                                              'No messages yet.',
+                                                              'Nenhuma mensagem...',
                                                             ),
                                                             textAlign:
                                                                 TextAlign.start,

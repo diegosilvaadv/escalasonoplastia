@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -276,17 +275,8 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
-                                                  child: CachedNetworkImage(
-                                                    fadeInDuration: Duration(
-                                                        milliseconds: 200),
-                                                    fadeOutDuration: Duration(
-                                                        milliseconds: 200),
-                                                    imageUrl:
-                                                        valueOrDefault<String>(
-                                                      secondUserUsersRecord
-                                                          .photoUrl,
-                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
-                                                    ),
+                                                  child: Image.asset(
+                                                    'assets/images/Design_sem_nome_(18).png',
                                                     width: 44.0,
                                                     height: 44.0,
                                                     fit: BoxFit.cover,
@@ -366,17 +356,8 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
-                                              child: CachedNetworkImage(
-                                                fadeInDuration:
-                                                    Duration(milliseconds: 200),
-                                                fadeOutDuration:
-                                                    Duration(milliseconds: 200),
-                                                imageUrl:
-                                                    valueOrDefault<String>(
-                                                  conditionalBuilderUsersRecord
-                                                      .photoUrl,
-                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
-                                                ),
+                                              child: Image.asset(
+                                                'assets/images/Design_sem_nome_(18).png',
                                                 width: 44.0,
                                                 height: 44.0,
                                                 fit: BoxFit.cover,
@@ -433,7 +414,7 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Group Chat',
+                                'Grupo Sonoplastia',
                                 style: FlutterFlowTheme.of(context).bodyLarge,
                               ),
                               Padding(
@@ -443,7 +424,7 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                                   '${valueOrDefault<String>(
                                     widget.chatRef?.users?.length.toString(),
                                     '2',
-                                  )} members',
+                                  )}Sonoplastas',
                                   style: FlutterFlowTheme.of(context)
                                       .labelSmall
                                       .override(

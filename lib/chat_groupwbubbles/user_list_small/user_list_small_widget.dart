@@ -153,7 +153,7 @@ class _UserListSmallWidgetState extends State<UserListSmallWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget.userRef?.role,
+                            widget.userRef?.email,
                             '--',
                           ),
                           style:
@@ -184,7 +184,7 @@ class _UserListSmallWidgetState extends State<UserListSmallWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: Text(
-                        'ME',
+                        'ADM',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium,
                       ),
