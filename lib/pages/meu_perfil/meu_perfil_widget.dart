@@ -5,10 +5,13 @@ import '/components/trocar_dia_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'meu_perfil_model.dart';
@@ -16,9 +19,9 @@ export 'meu_perfil_model.dart';
 
 class MeuPerfilWidget extends StatefulWidget {
   const MeuPerfilWidget({
-    super.key,
+    Key? key,
     required this.userRef,
-  });
+  }) : super(key: key);
 
   final DocumentReference? userRef;
 
@@ -91,14 +94,14 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: SizedBox(
+            body: Container(
               width: double.infinity,
               height: double.infinity,
               child: Stack(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: AlignmentDirectional(0.0, -1.0),
                     child: Image.network(
                       meuPerfilUsersRecord.photoUrl,
                       width: double.infinity,
@@ -107,10 +110,10 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -0.87),
+                    alignment: AlignmentDirectional(0.0, -0.87),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +124,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: const [
+                              boxShadow: [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x520E151B),
@@ -154,7 +157,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: const [
+                              boxShadow: [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x520E151B),
@@ -257,16 +260,16 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Flexible(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 200.0, 0.0, 0.0),
                               child: Container(
                                 width: double.infinity,
@@ -274,14 +277,14 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4.0,
                                       color: Color(0x320E151B),
                                       offset: Offset(0.0, -2.0),
                                     )
                                   ],
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(16.0),
@@ -289,13 +292,13 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -318,7 +321,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                       .headlineSmall,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -340,12 +343,12 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 12.0, 0.0, 0.0),
                                           child: Column(
                                             children: [
                                               Align(
-                                                alignment: const Alignment(0.0, 0),
+                                                alignment: Alignment(0.0, 0),
                                                 child: TabBar(
                                                   labelColor:
                                                       FlutterFlowTheme.of(
@@ -360,12 +363,12 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                               context)
                                                           .titleMedium,
                                                   unselectedLabelStyle:
-                                                      const TextStyle(),
+                                                      TextStyle(),
                                                   indicatorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .primaryText,
-                                                  tabs: const [
+                                                  tabs: [
                                                     Tab(
                                                       text: 'Próximas',
                                                     ),
@@ -384,7 +387,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -458,7 +461,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                 listViewIndex];
                                                             return Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                           10.0),
                                                               child: InkWell(
@@ -484,15 +487,15 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
                                                                                 return AlertDialog(
-                                                                                  title: const Text('Deseja Remover essa data?'),
+                                                                                  title: Text('Deseja Remover essa data?'),
                                                                                   actions: [
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: const Text('Cancelar'),
+                                                                                      child: Text('Cancelar'),
                                                                                     ),
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: const Text('Confirmar'),
+                                                                                      child: Text('Confirmar'),
                                                                                     ),
                                                                                   ],
                                                                                 );
@@ -516,7 +519,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                             ),
                                                                           ),
                                                                           duration:
-                                                                              const Duration(milliseconds: 4000),
+                                                                              Duration(milliseconds: 4000),
                                                                           backgroundColor:
                                                                               FlutterFlowTheme.of(context).secondary,
                                                                         ),
@@ -547,7 +550,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -603,7 +606,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                         Expanded(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 4.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -634,11 +637,11 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                                       columnUsersRecord.displayName,
                                                                                       style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                             fontFamily: 'Readex Pro',
-                                                                                            color: const Color(0xFFE46D1F),
+                                                                                            color: Color(0xFFE46D1F),
                                                                                           ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                                                                                       child: Text(
                                                                                         dateTimeFormat(
                                                                                           'MMMMEEEEd',
@@ -647,7 +650,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                                         ),
                                                                                         style: FlutterFlowTheme.of(context).headlineSmall.override(
                                                                                               fontFamily: 'Outfit',
-                                                                                              fontSize: 20.0,
+                                                                                              fontSize: 18.0,
                                                                                             ),
                                                                                       ),
                                                                                     ),
@@ -697,8 +700,8 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                             },
                                                                             child:
                                                                                 Container(
-                                                                              decoration: const BoxDecoration(),
-                                                                              child: const Padding(
+                                                                              decoration: BoxDecoration(),
+                                                                              child: Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                                                                                 child: Icon(
                                                                                   Icons.edit_calendar,
@@ -720,7 +723,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -794,7 +797,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                 listViewIndex];
                                                             return Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                           10.0),
                                                               child: InkWell(
@@ -820,15 +823,15 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
                                                                                 return AlertDialog(
-                                                                                  title: const Text('Deseja Remover essa data?'),
+                                                                                  title: Text('Deseja Remover essa data?'),
                                                                                   actions: [
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: const Text('Cancelar'),
+                                                                                      child: Text('Cancelar'),
                                                                                     ),
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: const Text('Confirmar'),
+                                                                                      child: Text('Confirmar'),
                                                                                     ),
                                                                                   ],
                                                                                 );
@@ -852,7 +855,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                             ),
                                                                           ),
                                                                           duration:
-                                                                              const Duration(milliseconds: 4000),
+                                                                              Duration(milliseconds: 4000),
                                                                           backgroundColor:
                                                                               FlutterFlowTheme.of(context).secondary,
                                                                         ),
@@ -883,7 +886,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             12.0,
@@ -926,11 +929,11 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                                     columnUsersRecord.displayName,
                                                                                     style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                           fontFamily: 'Readex Pro',
-                                                                                          color: const Color(0xFFE46D1F),
+                                                                                          color: Color(0xFFE46D1F),
                                                                                         ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                                                                                     child: Text(
                                                                                       dateTimeFormat(
                                                                                         'MMMMEEEEd',
@@ -939,7 +942,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                                                                       ),
                                                                                       style: FlutterFlowTheme.of(context).headlineSmall.override(
                                                                                             fontFamily: 'Outfit',
-                                                                                            fontSize: 22.0,
+                                                                                            fontSize: 18.0,
                                                                                           ),
                                                                                     ),
                                                                                   ),

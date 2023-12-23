@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -5,16 +6,20 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:expandable/expandable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_escala_model.dart';
 export 'add_escala_model.dart';
 
 class AddEscalaWidget extends StatefulWidget {
-  const AddEscalaWidget({super.key});
+  const AddEscalaWidget({Key? key}) : super(key: key);
 
   @override
   _AddEscalaWidgetState createState() => _AddEscalaWidgetState();
@@ -49,9 +54,9 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(0.0),
           child: BackdropFilter(
@@ -65,14 +70,14 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -100,10 +105,10 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Container(
                             width: double.infinity,
-                            color: const Color(0x00000000),
+                            color: Color(0x00000000),
                             child: ExpandableNotifier(
                               controller: _model.expandableController,
                               child: ExpandablePanel(
@@ -201,7 +206,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(10.0),
+                                                        EdgeInsets.all(10.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -221,7 +226,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -313,7 +318,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
@@ -352,7 +357,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -437,14 +442,14 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final datePickedDate = await showDatePicker(
+                            final _datePickedDate = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: getCurrentTimestamp,
@@ -480,9 +485,9 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                               },
                             );
 
-                            TimeOfDay? datePickedTime;
-                            if (datePickedDate != null) {
-                              datePickedTime = await showTimePicker(
+                            TimeOfDay? _datePickedTime;
+                            if (_datePickedDate != null) {
+                              _datePickedTime = await showTimePicker(
                                 context: context,
                                 initialTime:
                                     TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -521,15 +526,15 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                               );
                             }
 
-                            if (datePickedDate != null &&
-                                datePickedTime != null) {
+                            if (_datePickedDate != null &&
+                                _datePickedTime != null) {
                               safeSetState(() {
                                 _model.datePicked = DateTime(
-                                  datePickedDate.year,
-                                  datePickedDate.month,
-                                  datePickedDate.day,
-                                  datePickedTime!.hour,
-                                  datePickedTime.minute,
+                                  _datePickedDate.year,
+                                  _datePickedDate.month,
+                                  _datePickedDate.day,
+                                  _datePickedTime!.hour,
+                                  _datePickedTime.minute,
                                 );
                               });
                             }
@@ -545,7 +550,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: EdgeInsets.all(10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -584,7 +589,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -651,9 +656,9 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                               text: 'Adicionar Escala!',
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -663,7 +668,7 @@ class _AddEscalaWidgetState extends State<AddEscalaWidget> {
                                       color: Colors.white,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

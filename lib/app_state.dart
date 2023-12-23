@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -23,122 +26,152 @@ class FFAppState extends ChangeNotifier {
 
   DocumentReference? _users = FirebaseFirestore.instance.doc('/users/ref');
   DocumentReference? get users => _users;
-  set users(DocumentReference? value) {
-    _users = value;
+  set users(DocumentReference? _value) {
+    _users = _value;
   }
 
   int _userCondicao = 0;
   int get userCondicao => _userCondicao;
-  set userCondicao(int value) {
-    _userCondicao = value;
+  set userCondicao(int _value) {
+    _userCondicao = _value;
   }
 
   int _selectUser = 0;
   int get selectUser => _selectUser;
-  set selectUser(int value) {
-    _selectUser = value;
+  set selectUser(int _value) {
+    _selectUser = _value;
   }
 
   DocumentReference? _escalaTrocaRef =
       FirebaseFirestore.instance.doc('/escala/ref');
   DocumentReference? get escalaTrocaRef => _escalaTrocaRef;
-  set escalaTrocaRef(DocumentReference? value) {
-    _escalaTrocaRef = value;
+  set escalaTrocaRef(DocumentReference? _value) {
+    _escalaTrocaRef = _value;
   }
 
   DateTime? _diadeTroca = DateTime.fromMillisecondsSinceEpoch(1703263560000);
   DateTime? get diadeTroca => _diadeTroca;
-  set diadeTroca(DateTime? value) {
-    _diadeTroca = value;
+  set diadeTroca(DateTime? _value) {
+    _diadeTroca = _value;
   }
 
   String _sonoplastaNome = '';
   String get sonoplastaNome => _sonoplastaNome;
-  set sonoplastaNome(String value) {
-    _sonoplastaNome = value;
+  set sonoplastaNome(String _value) {
+    _sonoplastaNome = _value;
   }
 
   List<String> _menuItems = ['Home', 'Search', 'Directory', 'Book', 'Profile'];
   List<String> get menuItems => _menuItems;
-  set menuItems(List<String> value) {
-    _menuItems = value;
+  set menuItems(List<String> _value) {
+    _menuItems = _value;
   }
 
-  void addToMenuItems(String value) {
-    _menuItems.add(value);
+  void addToMenuItems(String _value) {
+    _menuItems.add(_value);
   }
 
-  void removeFromMenuItems(String value) {
-    _menuItems.remove(value);
+  void removeFromMenuItems(String _value) {
+    _menuItems.remove(_value);
   }
 
-  void removeAtIndexFromMenuItems(int index) {
-    _menuItems.removeAt(index);
+  void removeAtIndexFromMenuItems(int _index) {
+    _menuItems.removeAt(_index);
   }
 
   void updateMenuItemsAtIndex(
-    int index,
+    int _index,
     String Function(String) updateFn,
   ) {
-    _menuItems[index] = updateFn(_menuItems[index]);
+    _menuItems[_index] = updateFn(_menuItems[_index]);
   }
 
-  void insertAtIndexInMenuItems(int index, String value) {
-    _menuItems.insert(index, value);
+  void insertAtIndexInMenuItems(int _index, String _value) {
+    _menuItems.insert(_index, _value);
   }
 
   String _menuActiveItem = 'Home';
   String get menuActiveItem => _menuActiveItem;
-  set menuActiveItem(String value) {
-    _menuActiveItem = value;
+  set menuActiveItem(String _value) {
+    _menuActiveItem = _value;
   }
 
   List<Color> _menuItemColors = [
-    const Color(0xff4b39ef),
-    const Color(0xff39d2c0),
-    const Color(0xffee8b60),
-    const Color(0xffff5963),
-    const Color(0xff8f11d4)
+    Color(4283120111),
+    Color(4281979584),
+    Color(4293823328),
+    Color(4294924643),
+    Color(4287566292)
   ];
   List<Color> get menuItemColors => _menuItemColors;
-  set menuItemColors(List<Color> value) {
-    _menuItemColors = value;
+  set menuItemColors(List<Color> _value) {
+    _menuItemColors = _value;
   }
 
-  void addToMenuItemColors(Color value) {
-    _menuItemColors.add(value);
+  void addToMenuItemColors(Color _value) {
+    _menuItemColors.add(_value);
   }
 
-  void removeFromMenuItemColors(Color value) {
-    _menuItemColors.remove(value);
+  void removeFromMenuItemColors(Color _value) {
+    _menuItemColors.remove(_value);
   }
 
-  void removeAtIndexFromMenuItemColors(int index) {
-    _menuItemColors.removeAt(index);
+  void removeAtIndexFromMenuItemColors(int _index) {
+    _menuItemColors.removeAt(_index);
   }
 
   void updateMenuItemColorsAtIndex(
-    int index,
+    int _index,
     Color Function(Color) updateFn,
   ) {
-    _menuItemColors[index] = updateFn(_menuItemColors[index]);
+    _menuItemColors[_index] = updateFn(_menuItemColors[_index]);
   }
 
-  void insertAtIndexInMenuItemColors(int index, Color value) {
-    _menuItemColors.insert(index, value);
+  void insertAtIndexInMenuItemColors(int _index, Color _value) {
+    _menuItemColors.insert(_index, _value);
   }
 
   bool _drawer = false;
   bool get drawer => _drawer;
-  set drawer(bool value) {
-    _drawer = value;
+  set drawer(bool _value) {
+    _drawer = _value;
   }
 
   String _version = '';
   String get version => _version;
-  set version(String value) {
-    _version = value;
+  set version(String _value) {
+    _version = _value;
   }
+
+  final _userCacheManager = StreamRequestManager<List<UsersRecord>>();
+  Stream<List<UsersRecord>> userCache({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Stream<List<UsersRecord>> Function() requestFn,
+  }) =>
+      _userCacheManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearUserCacheCache() => _userCacheManager.clear();
+  void clearUserCacheCacheKey(String? uniqueKey) =>
+      _userCacheManager.clearRequest(uniqueKey);
+
+  final _userDocQueryManager = FutureRequestManager<UsersRecord>();
+  Future<UsersRecord> userDocQuery({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<UsersRecord> Function() requestFn,
+  }) =>
+      _userDocQueryManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearUserDocQueryCache() => _userDocQueryManager.clear();
+  void clearUserDocQueryCacheKey(String? uniqueKey) =>
+      _userDocQueryManager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

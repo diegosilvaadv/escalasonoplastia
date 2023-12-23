@@ -1,16 +1,22 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'serialization_util.dart';
 import '../backend.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
+import '../../main.dart';
 
 final _handledMessageIds = <String?>{};
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({super.key, required this.child});
+  const PushNotificationsHandler({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -98,7 +104,7 @@ class ParameterData {
       );
 
   static Future<ParameterData> Function(Map<String, dynamic>) none() =>
-      (data) async => const ParameterData();
+      (data) async => ParameterData();
 }
 
 final parametersBuilderMap =
@@ -114,6 +120,25 @@ final parametersBuilderMap =
   'MeuPerfil': (data) async => ParameterData(
         allParams: {
           'userRef': getParameter<DocumentReference>(data, 'userRef'),
+        },
+      ),
+  'chat_2_Details': (data) async => ParameterData(
+        allParams: {
+          'chatRef': await getDocumentParameter<ChatsRecord>(
+              data, 'chatRef', ChatsRecord.fromSnapshot),
+        },
+      ),
+  'chat_2_main': ParameterData.none(),
+  'chat_2_InviteUsers': (data) async => ParameterData(
+        allParams: {
+          'chatRef': await getDocumentParameter<ChatsRecord>(
+              data, 'chatRef', ChatsRecord.fromSnapshot),
+        },
+      ),
+  'image_Details': (data) async => ParameterData(
+        allParams: {
+          'chatMessage': await getDocumentParameter<ChatMessagesRecord>(
+              data, 'chatMessage', ChatMessagesRecord.fromSnapshot),
         },
       ),
 };

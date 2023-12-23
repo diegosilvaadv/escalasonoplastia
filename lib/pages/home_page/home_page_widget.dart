@@ -1,18 +1,20 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/add_escala_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -20,7 +22,7 @@ import 'home_page_model.dart';
 export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+  const HomePageWidget({Key? key}) : super(key: key);
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
@@ -48,8 +50,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: const Offset(-100.0, 0.0),
-          end: const Offset(0.0, 0.0),
+          begin: Offset(-100.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -61,8 +63,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 0.0),
-          end: const Offset(115.0, 0.0),
+          begin: Offset(0.0, 0.0),
+          end: Offset(115.0, 0.0),
         ),
       ],
     ),
@@ -74,22 +76,22 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: const Offset(0.0, 0.0),
-          end: const Offset(335.0, 0.0),
+          begin: Offset(0.0, 0.0),
+          end: Offset(335.0, 0.0),
         ),
         TiltEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: const Offset(0, 0),
-          end: const Offset(0, 0.524),
+          begin: Offset(0, 0),
+          end: Offset(0, 0.524),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: const Offset(1.0, 1.0),
-          end: const Offset(0.8, 0.8),
+          begin: Offset(1.0, 1.0),
+          end: Offset(0.8, 0.8),
         ),
       ],
     ),
@@ -108,8 +110,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: const Offset(14.0, 0.0),
-          end: const Offset(0.0, 0.0),
+          begin: Offset(14.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -128,8 +130,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: const Offset(0.0, 0.0),
-          end: const Offset(-14.0, 0.0),
+          begin: Offset(0.0, 0.0),
+          end: Offset(-14.0, 0.0),
         ),
       ],
     ),
@@ -188,43 +190,30 @@ class _HomePageWidgetState extends State<HomePageWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: Visibility(
-          visible:
-              valueOrDefault<bool>(currentUserDocument?.adm, false) == true,
-          child: AuthUserStreamWidget(
-            builder: (context) => FloatingActionButton(
-              onPressed: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  context: context,
-                  builder: (context) {
-                    return GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: const AddEscalaWidget(),
-                      ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            context.pushNamed(
+              'chat_2_main',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
               },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              elevation: 8.0,
-              child: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).info,
-                size: 24.0,
-              ),
-            ),
+            );
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          child: FaIcon(
+            FontAwesomeIcons.whatsapp,
+            color: FlutterFlowTheme.of(context).info,
+            size: 35.0,
           ),
         ),
         body: SafeArea(
           top: true,
-          child: SizedBox(
+          child: Container(
             width: double.infinity,
             height: double.infinity,
             child: Stack(
@@ -238,10 +227,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 120.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 120.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -251,7 +240,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 4.0, 0.0),
                                 child: FaIcon(
                                   FontAwesomeIcons.chartPie,
@@ -288,7 +277,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -328,7 +317,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -345,7 +334,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -365,7 +354,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -375,7 +364,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 8.0, 0.0),
                                                 child: Icon(
@@ -404,7 +393,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Icon(
                                               Icons.today_rounded,
@@ -421,7 +410,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -438,7 +427,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -459,7 +448,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -469,7 +458,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 8.0, 0.0),
                                                 child: Icon(
@@ -498,7 +487,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Icon(
                                               Icons.location_history,
@@ -515,7 +504,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Container(
                                   width: double.infinity,
@@ -529,7 +518,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
+                                    padding: EdgeInsets.all(6.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -539,7 +528,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 8.0, 0.0),
                                               child: Icon(
                                                 Icons.security,
@@ -566,7 +555,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: Icon(
                                             Icons.security,
@@ -581,7 +570,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -603,12 +592,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: const Color(0xFFB32417),
+                                        color: Color(0xFFB32417),
                                         width: 1.0,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: EdgeInsets.all(6.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -618,7 +607,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 8.0, 0.0),
                                                 child: Icon(
@@ -647,7 +636,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Icon(
                                               Icons.login_sharp,
@@ -664,14 +653,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 50.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 50.0,
-                                    constraints: const BoxConstraints(
+                                    constraints: BoxConstraints(
                                       maxWidth: 250.0,
                                     ),
                                     decoration: BoxDecoration(
@@ -685,7 +674,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
+                                      padding: EdgeInsets.all(4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -758,7 +747,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   0.0,
@@ -858,7 +847,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   0.0,
@@ -931,13 +920,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   ),
                 ),
                 AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
+                  duration: Duration(milliseconds: 300),
                   curve: Curves.easeIn,
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                         blurRadius: 50.0,
                         color: Color(0xDB000000),
@@ -946,7 +935,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     ],
                     borderRadius: BorderRadius.circular(0.0),
                   ),
-                  child: SizedBox(
+                  child: Container(
                     width: double.infinity,
                     height: double.infinity,
                     child: Stack(
@@ -957,7 +946,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1052,7 +1041,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         ),
                                         child: Stack(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           children: [
                                             Icon(
                                               Icons.menu,
@@ -1064,7 +1053,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               animationsMap[
                                                   'iconOnActionTriggerAnimation1']!,
                                             ),
-                                            const Icon(
+                                            Icon(
                                               Icons.menu_open,
                                               color: Color(0xFFE41D0B),
                                               size: 24.0,
@@ -1111,7 +1100,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: AuthUserStreamWidget(
                                                 builder: (context) =>
@@ -1155,12 +1144,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               FlutterFlowCalendar(
-                                color: const Color(0xFFE46D1F),
+                                color: Color(0xFFE46D1F),
                                 iconColor:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 weekFormat: true,
                                 weekStartsMonday: false,
-                                initialDate: getCurrentTimestamp,
                                 rowHeight: 64.0,
                                 onChange: (DateTimeRange? newSelectedDate) {
                                   setState(() => _model.calendarSelectedDay =
@@ -1190,11 +1178,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     FFLocalizations.of(context).languageCode,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 0.0, 10.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(12.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(12.0),
@@ -1207,11 +1195,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: StreamBuilder<List<UsersRecord>>(
-                                      stream: queryUsersRecord(
-                                        queryBuilder: (usersRecord) =>
-                                            usersRecord.orderBy('display_name'),
+                                      stream: FFAppState().userCache(
+                                        requestFn: () => queryUsersRecord(
+                                          queryBuilder: (usersRecord) =>
+                                              usersRecord
+                                                  .orderBy('display_name'),
+                                        ),
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -1241,7 +1232,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               final rowUsersRecord =
                                                   rowUsersRecordList[rowIndex];
                                               return Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: InkWell(
@@ -1267,7 +1258,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         'userRef':
                                                             rowUsersRecord,
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -1294,7 +1285,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(5.0),
+                                                          EdgeInsets.all(5.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1315,7 +1306,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         4.0,
                                                                         0.0,
@@ -1349,7 +1340,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(6.0),
+                                padding: EdgeInsets.all(6.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -1358,7 +1349,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: StreamBuilder<List<EscalaRecord>>(
                                       stream: queryEscalaRecord(
@@ -1374,6 +1365,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   .calendarSelectedDay!.start)
                                               : null,
                                         ),
+                                        singleRecord: true,
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -1394,21 +1386,23 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         List<EscalaRecord>
                                             listViewEscalaRecordList =
                                             snapshot.data!;
-                                        return ListView.builder(
+                                        // Return an empty Container when the item does not exist.
+                                        if (snapshot.data!.isEmpty) {
+                                          return Container();
+                                        }
+                                        final listViewEscalaRecord =
+                                            listViewEscalaRecordList.isNotEmpty
+                                                ? listViewEscalaRecordList.first
+                                                : null;
+                                        return ListView(
                                           padding: EdgeInsets.zero,
                                           primary: false,
                                           shrinkWrap: true,
                                           scrollDirection: Axis.vertical,
-                                          itemCount:
-                                              listViewEscalaRecordList.length,
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewEscalaRecord =
-                                                listViewEscalaRecordList[
-                                                    listViewIndex];
-                                            return StreamBuilder<UsersRecord>(
+                                          children: [
+                                            StreamBuilder<UsersRecord>(
                                               stream: UsersRecord.getDocument(
-                                                  listViewEscalaRecord
+                                                  listViewEscalaRecord!
                                                       .userRef!),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
@@ -1437,7 +1431,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -1468,7 +1462,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               'userRef':
                                                                   columnUsersRecord,
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -1486,13 +1480,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     .circular(
                                                                         8.0),
                                                             border: Border.all(
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFF13B038),
                                                             ),
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets.all(
+                                                                EdgeInsets.all(
                                                                     10.0),
                                                             child: Row(
                                                               mainAxisSize:
@@ -1516,7 +1510,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           border:
                                                                               Border.all(
                                                                             color:
-                                                                                const Color(0xFF13B038),
+                                                                                Color(0xFF13B038),
                                                                             width:
                                                                                 1.0,
                                                                           ),
@@ -1526,8 +1520,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           borderRadius:
                                                                               BorderRadius.circular(8.0),
                                                                           child:
-                                                                              Image.network(
-                                                                            columnUsersRecord.photoUrl,
+                                                                              CachedNetworkImage(
+                                                                            fadeInDuration:
+                                                                                Duration(milliseconds: 500),
+                                                                            fadeOutDuration:
+                                                                                Duration(milliseconds: 500),
+                                                                            imageUrl:
+                                                                                columnUsersRecord.photoUrl,
                                                                             width:
                                                                                 50.0,
                                                                             height:
@@ -1540,7 +1539,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       Expanded(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -1563,7 +1562,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               Text(
                                                                                 dateTimeFormat(
                                                                                   'MMMMEEEEd',
-                                                                                  listViewEscalaRecord.dia!,
+                                                                                  listViewEscalaRecord!.dia!,
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1576,7 +1575,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               Text(
                                                                                 dateTimeFormat(
                                                                                   'dd/MM/yy',
-                                                                                  listViewEscalaRecord.dia!,
+                                                                                  listViewEscalaRecord!.dia!,
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1610,8 +1609,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   ],
                                                 );
                                               },
-                                            );
-                                          },
+                                            ),
+                                          ],
                                         );
                                       },
                                     ),
@@ -1619,7 +1618,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 15.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1636,310 +1635,308 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    border: Border.all(
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: PagedListView<
-                                        DocumentSnapshot<Object?>?,
-                                        EscalaRecord>(
-                                      pagingController:
-                                          _model.setListViewController2(
-                                        EscalaRecord.collection
-                                            .where(
-                                              'dia',
-                                              isGreaterThanOrEqualTo:
-                                                  getCurrentTimestamp,
-                                            )
-                                            .orderBy('dia'),
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
                                       ),
-                                      padding: EdgeInsets.zero,
-                                      primary: false,
-                                      shrinkWrap: true,
-                                      reverse: false,
-                                      scrollDirection: Axis.vertical,
-                                      builderDelegate:
-                                          PagedChildBuilderDelegate<
-                                              EscalaRecord>(
-                                        // Customize what your widget looks like when it's loading the first page.
-                                        firstPageProgressIndicatorBuilder:
-                                            (_) => Center(
-                                          child: SizedBox(
-                                            width: 30.0,
-                                            height: 30.0,
-                                            child: SpinKitRipple(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              size: 30.0,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: PagedListView<
+                                          DocumentSnapshot<Object?>?,
+                                          EscalaRecord>(
+                                        pagingController:
+                                            _model.setListViewController2(
+                                          EscalaRecord.collection
+                                              .where(
+                                                'dia',
+                                                isGreaterThanOrEqualTo:
+                                                    getCurrentTimestamp,
+                                                isNull: (getCurrentTimestamp) ==
+                                                    null,
+                                              )
+                                              .orderBy('dia'),
+                                        ),
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        reverse: false,
+                                        scrollDirection: Axis.vertical,
+                                        builderDelegate:
+                                            PagedChildBuilderDelegate<
+                                                EscalaRecord>(
+                                          // Customize what your widget looks like when it's loading the first page.
+                                          firstPageProgressIndicatorBuilder:
+                                              (_) => Center(
+                                            child: SizedBox(
+                                              width: 30.0,
+                                              height: 30.0,
+                                              child: SpinKitRipple(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                size: 30.0,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        // Customize what your widget looks like when it's loading another page.
-                                        newPageProgressIndicatorBuilder: (_) =>
-                                            Center(
-                                          child: SizedBox(
-                                            width: 30.0,
-                                            height: 30.0,
-                                            child: SpinKitRipple(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              size: 30.0,
+                                          // Customize what your widget looks like when it's loading another page.
+                                          newPageProgressIndicatorBuilder:
+                                              (_) => Center(
+                                            child: SizedBox(
+                                              width: 30.0,
+                                              height: 30.0,
+                                              child: SpinKitRipple(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                size: 30.0,
+                                              ),
                                             ),
                                           ),
-                                        ),
 
-                                        itemBuilder:
-                                            (context, _, listViewIndex) {
-                                          final listViewEscalaRecord = _model
-                                              .listViewPagingController2!
-                                              .itemList![listViewIndex];
-                                          return StreamBuilder<UsersRecord>(
-                                            stream: UsersRecord.getDocument(
-                                                listViewEscalaRecord.userRef!),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 30.0,
-                                                    height: 30.0,
-                                                    child: SpinKitRipple(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      size: 30.0,
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              final columnUsersRecord =
-                                                  snapshot.data!;
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'detalhesPerfil',
-                                                    queryParameters: {
-                                                      'userRef': serializeParam(
-                                                        columnUsersRecord,
-                                                        ParamType.Document,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      'userRef':
-                                                          columnUsersRecord,
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  10.0),
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
+                                          itemBuilder:
+                                              (context, _, listViewIndex) {
+                                            final listViewEscalaRecord = _model
+                                                .listViewPagingController2!
+                                                .itemList![listViewIndex];
+                                            return StreamBuilder<UsersRecord>(
+                                              stream: UsersRecord.getDocument(
+                                                  listViewEscalaRecord
+                                                      .userRef!),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 30.0,
+                                                      height: 30.0,
+                                                      child: SpinKitRipple(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .alternate,
-                                                          ),
+                                                        size: 30.0,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                final columnUsersRecord =
+                                                    snapshot.data!;
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'detalhesPerfil',
+                                                      queryParameters: {
+                                                        'userRef':
+                                                            serializeParam(
+                                                          columnUsersRecord,
+                                                          ParamType.Document,
                                                         ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  10.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            6.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Text(
-                                                                              dateTimeFormat(
-                                                                                'MMM',
-                                                                                listViewEscalaRecord.dia!,
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'M PLUS 2',
-                                                                                    fontSize: 15.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Text(
-                                                                              dateTimeFormat(
-                                                                                'dd',
-                                                                                listViewEscalaRecord.dia!,
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Readex Pro',
-                                                                                    fontSize: 14.0,
-                                                                                  ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      Container(
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            width:
-                                                                                1.0,
-                                                                          ),
-                                                                        ),
-                                                                        child:
-                                                                            ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              Image.network(
-                                                                            columnUsersRecord.photoUrl,
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            fit:
-                                                                                BoxFit.cover,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Column(
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        'userRef':
+                                                            columnUsersRecord,
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    10.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                            ),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Row(
                                                                       mainAxisSize:
                                                                           MainAxisSize
                                                                               .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
                                                                       children: [
-                                                                        Text(
-                                                                          columnUsersRecord
-                                                                              .displayName,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Readex Pro',
-                                                                                fontSize: 16.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              6.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Text(
+                                                                                dateTimeFormat(
+                                                                                  'MMM',
+                                                                                  listViewEscalaRecord.dia!,
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'M PLUS 2',
+                                                                                      fontSize: 15.0,
+                                                                                    ),
                                                                               ),
-                                                                        ),
-                                                                        Text(
-                                                                          dateTimeFormat(
-                                                                            'MMMMEEEEd',
-                                                                            listViewEscalaRecord.dia!,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
+                                                                              Text(
+                                                                                dateTimeFormat(
+                                                                                  'dd',
+                                                                                  listViewEscalaRecord.dia!,
+                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Readex Pro',
+                                                                                      fontSize: 14.0,
+                                                                                    ),
+                                                                              ),
+                                                                            ],
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Readex Pro',
-                                                                                color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                fontSize: 15.0,
-                                                                                fontWeight: FontWeight.w300,
-                                                                              ),
+                                                                        ),
+                                                                        Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            border:
+                                                                                Border.all(
+                                                                              color: FlutterFlowTheme.of(context).alternate,
+                                                                              width: 1.0,
+                                                                            ),
+                                                                          ),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                CachedNetworkImage(
+                                                                              fadeInDuration: Duration(milliseconds: 500),
+                                                                              fadeOutDuration: Duration(milliseconds: 500),
+                                                                              imageUrl: columnUsersRecord.photoUrl,
+                                                                              width: 50.0,
+                                                                              height: 50.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Icon(
-                                                                Icons
-                                                                    .chevron_right,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
-                                                              ),
-                                                            ],
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                            columnUsersRecord.displayName,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Readex Pro',
+                                                                                  fontSize: 16.0,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                          ),
+                                                                          Text(
+                                                                            dateTimeFormat(
+                                                                              'MMMMEEEEd',
+                                                                              listViewEscalaRecord.dia!,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Readex Pro',
+                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                  fontSize: 15.0,
+                                                                                  fontWeight: FontWeight.w300,
+                                                                                ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Icon(
+                                                                  Icons
+                                                                      .chevron_right,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ),

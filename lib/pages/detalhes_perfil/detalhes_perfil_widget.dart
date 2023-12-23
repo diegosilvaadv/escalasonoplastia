@@ -4,9 +4,11 @@ import '/components/trocar_dia_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'detalhes_perfil_model.dart';
@@ -14,9 +16,9 @@ export 'detalhes_perfil_model.dart';
 
 class DetalhesPerfilWidget extends StatefulWidget {
   const DetalhesPerfilWidget({
-    super.key,
+    Key? key,
     required this.userRef,
-  });
+  }) : super(key: key);
 
   final UsersRecord? userRef;
 
@@ -69,14 +71,14 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: SizedBox(
+        body: Container(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Image.network(
                   widget.userRef!.photoUrl,
                   width: double.infinity,
@@ -85,9 +87,9 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, -0.87),
+                alignment: AlignmentDirectional(0.0, -0.87),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,7 +100,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 4.0,
                               color: Color(0x520E151B),
@@ -129,16 +131,16 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Expanded(
                       child: Align(
-                        alignment: const AlignmentDirectional(0.0, 1.0),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 200.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -146,14 +148,14 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: const [
+                              boxShadow: [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x320E151B),
                                   offset: Offset(0.0, -2.0),
                                 )
                               ],
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(0.0),
                                 bottomRight: Radius.circular(0.0),
                                 topLeft: Radius.circular(16.0),
@@ -161,13 +163,13 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -189,7 +191,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                       .headlineSmall,
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 valueOrDefault<String>(
@@ -208,12 +210,12 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Column(
                                         children: [
                                           Align(
-                                            alignment: const Alignment(0.0, 0),
+                                            alignment: Alignment(0.0, 0),
                                             child: TabBar(
                                               labelColor:
                                                   FlutterFlowTheme.of(context)
@@ -224,11 +226,11 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                               labelStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .titleMedium,
-                                              unselectedLabelStyle: const TextStyle(),
+                                              unselectedLabelStyle: TextStyle(),
                                               indicatorColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              tabs: const [
+                                              tabs: [
                                                 Tab(
                                                   text: 'Próximas',
                                                 ),
@@ -246,7 +248,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                   _model.tabBarController,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 24.0),
                                                   child: PagedListView<
@@ -313,7 +315,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                 listViewIndex];
                                                         return Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   10.0),
                                                           child: InkWell(
                                                             splashColor: Colors
@@ -341,15 +343,15 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                           builder:
                                                                               (alertDialogContext) {
                                                                             return AlertDialog(
-                                                                              title: const Text('Deseja Remover essa data?'),
+                                                                              title: Text('Deseja Remover essa data?'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: const Text('Cancelar'),
+                                                                                  child: Text('Cancelar'),
                                                                                 ),
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: const Text('Confirmar'),
+                                                                                  child: Text('Confirmar'),
                                                                                 ),
                                                                               ],
                                                                             );
@@ -373,7 +375,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                               FlutterFlowTheme.of(context).primaryText,
                                                                         ),
                                                                       ),
-                                                                      duration: const Duration(
+                                                                      duration: Duration(
                                                                           milliseconds:
                                                                               4000),
                                                                       backgroundColor:
@@ -404,7 +406,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                 ),
                                                               ),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         12.0,
@@ -467,7 +469,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                     Expanded(
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             4.0,
                                                                             0.0,
                                                                             0.0,
@@ -501,11 +503,11 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                                   columnUsersRecord.displayName,
                                                                                   style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                         fontFamily: 'Readex Pro',
-                                                                                        color: const Color(0xFFE46D1F),
+                                                                                        color: Color(0xFFE46D1F),
                                                                                       ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
                                                                                   child: Text(
                                                                                     dateTimeFormat(
                                                                                       'MMMMEEEEd',
@@ -514,7 +516,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                                     ),
                                                                                     style: FlutterFlowTheme.of(context).headlineSmall.override(
                                                                                           fontFamily: 'Outfit',
-                                                                                          fontSize: 20.0,
+                                                                                          fontSize: 18.0,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -571,9 +573,9 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                         child:
                                                                             Container(
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
-                                                                              const Padding(
+                                                                              Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 20.0,
@@ -599,7 +601,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 24.0),
                                                   child: PagedListView<
@@ -666,7 +668,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                 listViewIndex];
                                                         return Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   10.0),
                                                           child: InkWell(
                                                             splashColor: Colors
@@ -693,15 +695,15 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                           builder:
                                                                               (alertDialogContext) {
                                                                             return AlertDialog(
-                                                                              title: const Text('Deseja Remover essa data?'),
+                                                                              title: Text('Deseja Remover essa data?'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: const Text('Cancelar'),
+                                                                                  child: Text('Cancelar'),
                                                                                 ),
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: const Text('Confirmar'),
+                                                                                  child: Text('Confirmar'),
                                                                                 ),
                                                                               ],
                                                                             );
@@ -725,7 +727,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                               FlutterFlowTheme.of(context).primaryText,
                                                                         ),
                                                                       ),
-                                                                      duration: const Duration(
+                                                                      duration: Duration(
                                                                           milliseconds:
                                                                               4000),
                                                                       backgroundColor:
@@ -756,7 +758,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                 ),
                                                               ),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         12.0,
@@ -804,11 +806,11 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                                 columnUsersRecord.displayName,
                                                                                 style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                       fontFamily: 'Readex Pro',
-                                                                                      color: const Color(0xFFE46D1F),
+                                                                                      color: Color(0xFFE46D1F),
                                                                                     ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
                                                                                 child: Text(
                                                                                   dateTimeFormat(
                                                                                     'MMMMEEEEd',
@@ -817,7 +819,7 @@ class _DetalhesPerfilWidgetState extends State<DetalhesPerfilWidget>
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).headlineSmall.override(
                                                                                         fontFamily: 'Outfit',
-                                                                                        fontSize: 22.0,
+                                                                                        fontSize: 18.0,
                                                                                       ),
                                                                                 ),
                                                                               ),

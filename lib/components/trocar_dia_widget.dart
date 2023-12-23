@@ -5,18 +5,21 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'trocar_dia_model.dart';
 export 'trocar_dia_model.dart';
 
 class TrocarDiaWidget extends StatefulWidget {
   const TrocarDiaWidget({
-    super.key,
+    Key? key,
     required this.diaRef,
-  });
+  }) : super(key: key);
 
   final EscalaRecord? diaRef;
 
@@ -54,20 +57,20 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                         blurRadius: 4.0,
                         color: Color(0x34090F13),
@@ -77,13 +80,13 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(12.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: Text(
                             'Trocar Data ',
@@ -113,7 +116,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                               ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Text(
                             'Selecione com quem vai trocar essa data!',
@@ -121,7 +124,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -134,10 +137,10 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: EdgeInsets.all(10.0),
                               child: Container(
                                 width: double.infinity,
-                                color: const Color(0x00000000),
+                                color: Color(0x00000000),
                                 child: ExpandableNotifier(
                                   controller: _model.expandableController1,
                                   child: ExpandablePanel(
@@ -207,7 +210,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                           listViewIndex];
                                                   return Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 6.0),
                                                     child: InkWell(
@@ -246,7 +249,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   10.0),
                                                           child: Row(
                                                             mainAxisSize:
@@ -270,7 +273,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -363,7 +366,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(10.0),
+                                                  padding: EdgeInsets.all(10.0),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -407,7 +410,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -510,7 +513,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -524,7 +527,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -538,10 +541,10 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Container(
                                       width: double.infinity,
-                                      color: const Color(0x00000000),
+                                      color: Color(0x00000000),
                                       child: ExpandableNotifier(
                                         controller:
                                             _model.expandableController2,
@@ -621,7 +624,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                                 listViewIndex];
                                                         return Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -644,7 +647,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                           10.0),
                                                               child: StreamBuilder<
@@ -711,7 +714,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               6.0,
@@ -758,7 +761,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               4.0,
                                                                               0.0,
                                                                               0.0,
@@ -779,7 +782,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                                         Expanded(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 10.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -864,7 +867,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                         ),
                                                       ),
                                                       child: Padding(
-                                                        padding: const EdgeInsets.all(
+                                                        padding: EdgeInsets.all(
                                                             10.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -911,7 +914,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -1010,7 +1013,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                           ),
                         if (FFAppState().selectUser == 1)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1036,7 +1039,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                         ));
                                     triggerPushNotification(
                                       notificationTitle:
-                                          '$currentUserDisplayName Trocou uma data com você!',
+                                          '${currentUserDisplayName} Trocou uma data com você!',
                                       notificationText:
                                           'Trocou a data: ${dateTimeFormat(
                                         'MMMMEEEEd',
@@ -1074,14 +1077,14 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
                                           title:
-                                              const Text('Data Trocado com Sucesso!'),
+                                              Text('Data Trocado com Sucesso!'),
                                           content: Text(
                                               '${FFAppState().sonoplastaNome} Recebera uma Notificação sobre essa troca de data!'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
@@ -1091,9 +1094,9 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                   text: 'Trocar dia',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1103,7 +1106,7 @@ class _TrocarDiaWidgetState extends State<TrocarDiaWidget> {
                                           color: Colors.white,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
