@@ -60,7 +60,9 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
+          iconTheme:
+              IconThemeData(color: FlutterFlowTheme.of(context).primaryText),
+          automaticallyImplyLeading: true,
           title: Text(
             'Chat ',
             style: FlutterFlowTheme.of(context).headlineLarge,

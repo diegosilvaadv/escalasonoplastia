@@ -424,7 +424,7 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                                   '${valueOrDefault<String>(
                                     widget.chatRef?.users?.length.toString(),
                                     '2',
-                                  )}Sonoplastas',
+                                  )} Sonoplastas',
                                   style: FlutterFlowTheme.of(context)
                                       .labelSmall
                                       .override(
