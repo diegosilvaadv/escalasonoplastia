@@ -91,7 +91,7 @@ class _ChatDetailsOverlayWidgetState extends State<ChatDetailsOverlayWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Chat Details',
+                            'Detalhes do Grupo',
                             style: FlutterFlowTheme.of(context).headlineSmall,
                           ),
                         ),
@@ -124,7 +124,7 @@ class _ChatDetailsOverlayWidgetState extends State<ChatDetailsOverlayWidget> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Group Chat ID: ',
+                              text: 'Grupo ID: ',
                               style: TextStyle(),
                             ),
                             TextSpan(
@@ -146,7 +146,7 @@ class _ChatDetailsOverlayWidgetState extends State<ChatDetailsOverlayWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                       child: Text(
-                        'In this chat',
+                        'Sonoplastas',
                         style: FlutterFlowTheme.of(context).labelMedium,
                       ),
                     ),
@@ -300,7 +300,7 @@ class _ChatDetailsOverlayWidgetState extends State<ChatDetailsOverlayWidget> {
                         onPressed: () async {
                           Navigator.pop(context);
                         },
-                        text: 'Close',
+                        text: 'Fechar',
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 52.0,

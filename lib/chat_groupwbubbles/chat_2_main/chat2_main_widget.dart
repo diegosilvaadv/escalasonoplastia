@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -575,16 +574,8 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
                                                                           borderRadius:
                                                                               BorderRadius.circular(8.0),
                                                                           child:
-                                                                              CachedNetworkImage(
-                                                                            fadeInDuration:
-                                                                                Duration(milliseconds: 200),
-                                                                            fadeOutDuration:
-                                                                                Duration(milliseconds: 200),
-                                                                            imageUrl:
-                                                                                valueOrDefault<String>(
-                                                                              containerUsersRecord.photoUrl,
-                                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
-                                                                            ),
+                                                                              Image.asset(
+                                                                            'assets/images/Design_sem_nome_(18).png',
                                                                             width:
                                                                                 44.0,
                                                                             height:
@@ -680,18 +671,9 @@ class _Chat2MainWidgetState extends State<Chat2MainWidget> {
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               8.0),
-                                                                      child:
-                                                                          CachedNetworkImage(
-                                                                        fadeInDuration:
-                                                                            Duration(milliseconds: 200),
-                                                                        fadeOutDuration:
-                                                                            Duration(milliseconds: 200),
-                                                                        imageUrl:
-                                                                            valueOrDefault<String>(
-                                                                          rowUsersRecord
-                                                                              .photoUrl,
-                                                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/test-flow-at3mts/assets/jozbfglfd548/flutterflow_future%402x.jpg',
-                                                                        ),
+                                                                      child: Image
+                                                                          .asset(
+                                                                        'assets/images/Design_sem_nome_(18).png',
                                                                         width:
                                                                             44.0,
                                                                         height:

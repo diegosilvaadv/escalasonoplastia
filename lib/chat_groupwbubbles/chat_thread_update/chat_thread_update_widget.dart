@@ -351,92 +351,128 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                         style: FlutterFlowTheme.of(context).labelSmall,
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 3.0,
-                            color: Color(0x33000000),
-                            offset: Offset(0.0, 1.0),
-                          )
-                        ],
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(12.0),
-                          bottomRight: Radius.circular(0.0),
-                          topLeft: Radius.circular(12.0),
-                          topRight: Radius.circular(12.0),
-                        ),
-                        border: Border.all(
-                          color: FlutterFlowTheme.of(context).accent1,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            SelectionArea(
-                                child: Text(
-                              valueOrDefault<String>(
-                                widget.chatMessagesRef?.text,
-                                '--',
-                              ),
-                              style: FlutterFlowTheme.of(context).titleSmall,
-                            )),
-                            if (widget.chatMessagesRef?.image != null &&
-                                widget.chatMessagesRef?.image != '')
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 12.0, 0.0, 4.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'image_Details',
-                                      queryParameters: {
-                                        'chatMessage': serializeParam(
-                                          widget.chatMessagesRef,
-                                          ParamType.Document,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        'chatMessage': widget.chatMessagesRef,
-                                      },
-                                    );
-                                  },
-                                  child: FlutterFlowMediaDisplay(
-                                    path: widget.chatMessagesRef!.image,
-                                    imageBuilder: (path) => ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: CachedNetworkImage(
-                                        fadeInDuration:
-                                            Duration(milliseconds: 500),
-                                        fadeOutDuration:
-                                            Duration(milliseconds: 500),
-                                        imageUrl: path,
-                                        width: 300.0,
-                                        fit: BoxFit.cover,
-                                      ),
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onLongPress: () async {
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Deseja Deletar Mensagem?'),
+                                  content: Text(currentUserDisplayName),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancelar'),
                                     ),
-                                    videoPlayerBuilder: (path) =>
-                                        FlutterFlowVideoPlayer(
-                                      path: path,
-                                      width: 300.0,
-                                      autoPlay: false,
-                                      looping: true,
-                                      showControls: true,
-                                      allowFullScreen: true,
-                                      allowPlaybackSpeedMenu: false,
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirmar'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
+                        if (confirmDialogResponse) {
+                          await widget.chatMessagesRef!.reference.delete();
+                        } else {
+                          return;
+                        }
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primary,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 3.0,
+                              color: Color(0x33000000),
+                              offset: Offset(0.0, 1.0),
+                            )
+                          ],
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(12.0),
+                            bottomRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(12.0),
+                            topRight: Radius.circular(12.0),
+                          ),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).accent1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SelectionArea(
+                                  child: Text(
+                                valueOrDefault<String>(
+                                  widget.chatMessagesRef?.text,
+                                  '--',
+                                ),
+                                style: FlutterFlowTheme.of(context).titleSmall,
+                              )),
+                              if (widget.chatMessagesRef?.image != null &&
+                                  widget.chatMessagesRef?.image != '')
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 12.0, 0.0, 4.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'image_Details',
+                                        queryParameters: {
+                                          'chatMessage': serializeParam(
+                                            widget.chatMessagesRef,
+                                            ParamType.Document,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'chatMessage': widget.chatMessagesRef,
+                                        },
+                                      );
+                                    },
+                                    child: FlutterFlowMediaDisplay(
+                                      path: widget.chatMessagesRef!.image,
+                                      imageBuilder: (path) => ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: CachedNetworkImage(
+                                          fadeInDuration:
+                                              Duration(milliseconds: 500),
+                                          fadeOutDuration:
+                                              Duration(milliseconds: 500),
+                                          imageUrl: path,
+                                          width: 300.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      videoPlayerBuilder: (path) =>
+                                          FlutterFlowVideoPlayer(
+                                        path: path,
+                                        width: 300.0,
+                                        autoPlay: false,
+                                        looping: true,
+                                        showControls: true,
+                                        allowFullScreen: true,
+                                        allowPlaybackSpeedMenu: false,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
