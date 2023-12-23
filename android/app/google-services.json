@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "932822099254",
+    "project_id": "escalaigrejas",
+    "storage_bucket": "escalaigrejas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932822099254:android:bc6fa568fba30ff69fff97",
+        "android_client_info": {
+          "package_name": "com.adv7dev.escalaigrejas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvlHrJpAS1hgTwHJmhy-5guaUGoEo16Ew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
